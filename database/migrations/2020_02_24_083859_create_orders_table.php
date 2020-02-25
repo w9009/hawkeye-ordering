@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCategoryId extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddCategoryId extends Migration
      */
     public function up()
     {
-        Schema::table('products',function (Blueprint $table) {
-            $table->unsignedInteger('category_id');
-            $table->foreign('category_id')->references(['id'])->on('categories')->onUpdate('cascade')->onDelete('cascade');;
+        Schema::create('orders', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->string('description', 600);
+            $table->string('due');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +29,6 @@ class AddCategoryId extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('orders');
     }
 }

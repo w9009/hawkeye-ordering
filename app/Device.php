@@ -13,7 +13,11 @@ class Device extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Product');
+        return $this->belongsToMany('App\Product')->withPivot('product_amount');
+    }
+
+    public function orders() {
+      return $this->belongsToMany('App\Order');
     }
 
     protected $fillable = [
@@ -27,5 +31,3 @@ class Device extends Model
         'id'
     ];
 }
-
-

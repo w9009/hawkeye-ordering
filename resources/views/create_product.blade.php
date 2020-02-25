@@ -4,7 +4,8 @@
 <div class="container-home">
     <div class="products-table">
         <h3>Create a product</h3>
-        <form action=" {{ route('create_product') }}">
+        <form action=" {{ route('create_product') }}" enctype="multipart/form-data" method="post">
+            @csrf
             <div class="input-wrapper">
                 <label for="name">name: </label>
                 <input id="name" name="name" type="text">
@@ -12,7 +13,7 @@
 
             <div class="input-wrapper">
                 <label for="delivery">delivery: </label>
-                <input id="delivery" name="delivery_time" type="date">
+                <input id="delivery" name="delivery_time" type="text">
             </div>
 
             <div class="input-wrapper">

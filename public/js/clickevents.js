@@ -1,6 +1,8 @@
 let current_count = 0;
 $(document).ready(function(){
     $('.name').click(function(){$('.name-invisible').removeClass('invisible') })
+    $('.status').click(function(){$('.status-invisible').removeClass('invisible') })
+    $('.description').click(function(){$('.description-invisible').removeClass('invisible') })
     $('.created_at').click(function(){$('.created_at-invisible').removeClass('invisible') })
     $('.updated_at').click(function(){$('.updated_at-invisible').removeClass('invisible') })
     $('.price').click(function(){$('.price-invisible').removeClass('invisible') })
@@ -12,6 +14,11 @@ $(document).ready(function(){
         $('#new-category').removeClass('invisible');
         $(this).remove();
         $('#category').remove();
+    })
+    $('#add-Status').click(function(){
+        $('#new-Status').removeClass('invisible');
+        $(this).remove();
+        $('#Status').remove();
     })
         $('#part-list').on('click','.remove-item', function(){
             let li_parent = $(this).parent().parent()

@@ -11,8 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/custom-alert.js') }}" defer></script>
     <script src="{{ asset('js/clickevents.js') }}" defer></script>
-    <script src="{{ asset('js/domelements.js') }}" defer></script>
+    <script src="{{ asset('js/docschanges.js') }}" defer></script>
 
     <!-- Fonts -->
     <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js" data-mutate-approach="sync"></script>
@@ -32,6 +33,10 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <a class= "parts-devices" href="{{route('parts_devices')}}">Parts and Devices</a>
+
+                <a class= "orders" href="{{route('home')}}">Orders</a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->

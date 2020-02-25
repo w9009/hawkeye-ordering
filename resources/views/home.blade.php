@@ -1,39 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-home">
-    <div class="devices-table">
-        <h3>Devices Overview</h3>
-        @if(@count($devices) > 0)
-            <div class="all-devices">
-                @foreach($devices as $device)
-                    <p>{{ $device->name }}</p>
+  <div class="order-container">
+    <a href="{{ route('nav_create_order') }}">Create order</a>
+    @if(@isset($orders))
+      <table style="border-collapse: collapse;">
+        <tr>
+          <th>Order title</th>
+          <th>Order description</th>
+          <th>Order status</th>
+          <th>Order due date</th>
+          <th>Order Devices</th>
+        </tr>
+        @foreach($orders as $order)
+          <tr class="spacer"></tr>
+          @if($order->status->id == 1)
+            <tr class="order-failed">
+          @elseif($order->status->id == 2)
+            <tr class="order-done">
+          @elseif($order->status->id == 3)
+            <tr class="order-tr">
+          @elseif($order->status->id == 4)
+            <tr class="order-production">
+          @endif
+            <td>{{ $order->title }}</td>
+            <td>{{ $order->description }}</td>
+            <td>{{ $order->status->name }}</td>
+            <td>{{ $order->due }}</td>
+            <td>
+              <ul>
+                @foreach($order->devices as $device)
+                <li>{{ $device->name }} : {{ $device->pivot->quantity }}x</li>
                 @endforeach
-            </div>
-        @else
-            <p>no devices found</p>
-            <a href="{{ route('nav_create_device') }}">create device</a>
-        @endif
-    </div>
-
-    <div class="products-table">
-        <h3>Products Overview</h3>
-        @if(@count($products) > 0)
-            <div class="all-products">
-                <ul>
-                @foreach($products as $product)
-                    <li>
-                        <a href="{{ route('nav_update_product',['id' => $product->id]) }}">{{ $product->name }}</a>
-                    </li>
-                @endforeach
-                </ul>
-                <a href="{{ route('nav_create_product') }}">create product</a>
-            </div>
-        @else
-            <p>no products found</p>
-            <a href="{{ route('nav_create_product') }}">create product</a>
-        @endif
-    </div>
-
+              </ul>
+            </td>
+            <td><a class="td-a" href="{{ route('inspect', ['id' => $order->id]) }}"><i class="fas fa-edit"></i></a></td>
+          </tr>
+        @endforeach
+      </table>
+    @else
+      <h3>There are no orders placed.</h3>
+    @endif
 </div>
 @endsection

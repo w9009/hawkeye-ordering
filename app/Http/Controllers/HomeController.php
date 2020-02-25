@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Device;
-use App\Product;
+use App\Category;
+use App\Order;
+
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -28,15 +30,17 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        // get all devices and products for authenticated user
-        $devices = Device::whereHas('users', function ($query) use($user) {
-            $query->where('id', $user->id);
-        })->get();
+        // get all devices and products for authenticated use
+        $orders = Order::with('devices', 'status')->get();
 
-        $products = Product::whereHas('users', function ($query) use($user) {
-            $query->where('id', $user->id);
-        })->get();
+        return view('home', ['orders' => $orders]);
+    }
 
-        return view('home', ['devices' => $devices, 'products' => $products]);
+    public function partsDevices()
+    {
+      $categories = Category::with('products')->get();
+      $devices  = Device::all();
+
+      return view('parts_devices', ['devices' => $devices, 'categories' => $categories]);
     }
 }

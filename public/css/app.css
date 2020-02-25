@@ -220,10 +220,6 @@ svg {
   vertical-align: middle;
 }
 
-table {
-  border-collapse: collapse;
-}
-
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -533,6 +529,10 @@ mark,
 .figure-caption {
   font-size: 90%;
   color: #6c757d;
+}
+.td-a {
+  border:none !important;
+  margin:0 !important;
 }
 
 code {
@@ -4752,7 +4752,7 @@ input[type=button].btn-block {
 }
 
 .navbar {
-  background:red;
+  background:#ff2121;
   position: relative;
   display: -webkit-box;
   display: flex;
@@ -5826,9 +5826,9 @@ a.badge-dark.focus {
 }
 
 .alert-primary {
-  color: #1b4b72;
-  background-color: #d6e9f8;
-  border-color: #c6e0f5;
+  color: #ff141c;
+  background-color: #ff141c;
+  border-color: #f70008;
 }
 
 .alert-primary hr {
@@ -5836,11 +5836,11 @@ a.badge-dark.focus {
 }
 
 .alert-primary .alert-link {
-  color: #113049;
+  color: #ff141c;
 }
 
 .alert-secondary {
-  color: #383d41;
+  color: #ff141c;
   background-color: #e2e3e5;
   border-color: #d6d8db;
 }
@@ -11361,8 +11361,6 @@ a.text-dark:focus {
 }
 
 .products-table, .devices-table {
-  border:solid #999999 .5px;
-  border-radius:5px;
   width:40%;
 }
 
@@ -11370,26 +11368,27 @@ a.text-dark:focus {
   padding-left:10%;
 }
 
-.container-home {
+.container-home{
   display:flex;
   justify-content:space-around;
   margin: 0 10%;
 }
+.container-parts {
+  display:flex;
+  justify-content:space-between;
+}
 
 .container-home h3 {
-  text-align:center;
   margin-top:10px;
-  border-bottom: solid .5px #999999;
-  padding-bottom:50px;
   width: 100%;
 }
 
-.container-home a{
+.container-home a, .order-container a{
   margin-bottom:20px;
   display:block;
   border-radius:5px;
   border: solid .5px #999999;
-  width: 40%;
+  width: 100px;
   padding-top:13.5px;
   text-align:center;
   height:50px;
@@ -11401,23 +11400,17 @@ a.text-dark:focus {
 
 button{
   margin-bottom:20px;
+  margin-top:20px;
+  margin-left:20px;
   display:block;
   border-radius:5px;
-  margin-left:22.5%;
-  border: solid .5px #999999;
-  width: 40%;
+  border: solid .5px #ff8084;
+  width: 10%;
+  background:white;
   padding-bottom:10px;
   color:red;
   text-align:center;
-  height:50px;
-  -moz-transition:color .2s ease-in;
-  -o-transition:color .2s ease-in;
-  -webkit-transition:color .2s ease-in;
-}
-.container-home a:hover, button:hover {
-  background: red;
-  color:white;
-  text-decoration: none;
+  height:25px;
 }
 
 li a {
@@ -11432,8 +11425,8 @@ li a:hover{
   color:black !important;
 }
 .container-update .products-table li {
+  display:flex;
   width:100%;
-  border-bottom: .5px solid #999999;
   padding:0;
   margin: 5px 10px;
 }
@@ -11462,7 +11455,7 @@ li a:hover{
   width:60%;
 }
 .update-products p {
-  width:100px;
+  width:50%;
 }
 
 .input-wrapper {
@@ -11489,6 +11482,8 @@ form input {
 
 .update-products input, .update-products button {
   height:25px;
+  margin-top: 25px
+  ;
   width:200px;
 }
 .description-input  {
@@ -11515,4 +11510,206 @@ form input {
 .remove-item {
   width: 20px;
   height: 20px;
+}
+
+.alert {
+    position: absolute;
+    z-index: 9999;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    display: none;
+}
+
+.alert.active {
+    display: block;
+}
+
+.alert-bottom {
+    left: 0;
+    right: 0;
+    bottom: 10px;
+}
+
+.alert-top {
+    left: 0;
+    right: 0;
+    top: 50px;
+}
+
+.alert-right {
+    right: 10px;
+    bottom: 10%;
+    min-height: 10vh;
+}
+
+.alert-left {
+    left: 10px;
+    bottom: 10%;
+    min-height: 10vh;
+}
+
+.alert-primary {
+    text-align:center;
+    color: #ffffff;
+    background-color: #ff8084;
+    border-color: #ff5257;
+}
+
+.alert-close {
+    position: absolute;
+    right: 1.5%;
+}
+
+.alert-close:after {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    content: 'X';
+    color: #69f;
+}
+.order-container {
+  margin:50px 10%;
+}
+
+.order-container a {
+  margin-top:50px;
+  margin-left:5% ;
+  width:20%;
+}
+.order-container h3 {
+  text-align:center;
+}
+table {
+  text-align:center;
+  width: 90%;
+  margin:0 5%;
+}
+
+.parts-devices, .orders {
+  margin-left: 5%;
+  margin-top:  4px;
+}
+
+.orders {
+  margin-top: 5px;
+}
+.spacer {
+  height:4px;
+}
+#navbarDropdown {
+  margin-top: 2px !important;
+}
+
+.order-tr {
+  border:solid #ffba3b 1px;
+  background: #ffcd70;
+}
+.order-done {
+  border:solid #47ff54 1px;
+  background: #7aff84;
+}
+
+.order-failed {
+  border:solid #ff2626 1px;
+  background:  #ff3333;
+  color:white;
+}
+.order-production {
+  border: solid #5cecff 1px;
+  background:#9cf3ff;
+}
+.navbar a {
+  font-size: 1.2em;
+  color:white !important;
+}
+
+.information-table {
+  width:100%;
+  border-radius:12px;
+  border:white solid .5px;
+  margin:50px 0;
+  margin-bottom:0;
+  text-align:left;
+}
+
+select {
+  border:solid 2px #ff8084;
+  width:20%;
+  appearance: none;
+}
+ul {
+  list-style: none;
+}
+
+.information-table tbody tr:nth-child(odd){
+  display:block;
+  background-color: #e6e6e6;
+  color:red;
+}
+
+.information-table tr td:nth-child(2) {
+  border-left:white 2px solid;
+}
+
+.information-table tr td:nth-child(1) {
+  padding-right:50px;
+}
+.information-table td a {
+  border:none !important;
+}
+.parts-products {
+  width:40%;
+  border:solid #e6e6e6 2px;
+  border-top-right-radius:12px;
+  border-bottom-right-radius:12px;
+  border-bottom-left-radius:12px;
+}
+
+.parts-devices-table {
+  width: 30%;
+  border:solid #e6e6e6 2px;
+  border-top-right-radius:12px;
+  border-bottom-right-radius:12px;
+  border-bottom-left-radius:12px;
+}
+.parts-products h3, .parts-devices-table h3 {
+  text-align:center;
+}
+.container-margin-20 {
+  margin: 0 30%;
+}
+.container-parts .links {
+  padding-top:7.5px;
+  font-size:1.3em;
+  border-bottom-left-radius:5px;
+  border-top-left-radius: 5px;
+  text-align:center;
+  height:50px;
+  width: 15%;
+  border:solid #e6e6e6 2px;
+}
+.links:hover{
+  background:red;
+  text-decoration:none;
+  color:white;
+}
+
+.parts-products td, .parts-devices-table td {
+  padding-left: 20px;
+}
+.category-item:hover {
+  color: red;
+  cursor:pointer;
+}
+.device-information {
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+}
+
+.products-table{
+  border:solid #e6e6e6 2px;
+  border-radius:12px;
 }

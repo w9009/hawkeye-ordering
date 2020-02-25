@@ -6,6 +6,8 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
+use Illuminate\Support\Facades\Storage;
+use App\Order;
 
 class ProductsController extends Controller
 {
@@ -18,7 +20,8 @@ class ProductsController extends Controller
     public function navUpdate(Request $request)
     {
         $product = Product::whereId($request->id)->first();
-        return view('update_product', ['product' => $product]);
+        $image = base64_encode(Storage::disk('s3')->get($product->image));
+        return view('update_product', ['product' => $product, 'image' => $image]);
     }
 
     public function update(Request $request)
@@ -30,9 +33,11 @@ class ProductsController extends Controller
 
         foreach ($params as $key => $value) {
             $product->$key = $value;
-            $product->save();
+            $product->update();
         }
-        return view('update_product', ['product' => $product]);
+
+        $image = Storage::disk('s3')->url($product->image);
+        return view('update_product', ['product' => $product, 'image' => $image]);
     }
 
     public function create(Request $request)
@@ -46,12 +51,18 @@ class ProductsController extends Controller
                 'name' => $params['newCategory'],
             ]);
         }
+        $image  = $request->file('image');
+        $name=time().$image->getClientOriginalName();
+        $ext = $image->extension();
+        $replaceables = ['-', '.', " ", $ext];
+        $filePath = str_replace($replaceables, "", 'images/'. $name) . '.' . $ext;
+        Storage::disk('s3')->put($filePath, file_get_contents($image));
 
         $product = Product::firstOrCreate([
             'name' => $params['name'],
             'delivery_time' => $params['delivery_time'],
             'category_id' => $category->id,
-            'image' => $params['image'],
+            'image' => $filePath,
             'amount' => $params['amount'],
             'store' => $params['store'],
             'price' => $params['price'],

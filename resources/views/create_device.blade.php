@@ -4,16 +4,16 @@
 <div class="container-home">
     <div class="products-table">
         <h3>Create a device</h3>
-        <form id="create-device=-form" action="{{ route('create_device') }}">
+        <form id="create-device-form" method="post" action="{{ route('create_device') }}" enctype="multipart/form-data">
+            @csrf
             <div class="input-wrapper">
                 <label for="name">name: </label>
                 <input id="name" name="name" type="text">
             </div>
 
-            <div class="input-wrapper">
-                <label for="delivery">delivery: </label>
-                <input id="delivery" name="delivery_time" type="text">
-            </div>
+            @if(@isset($error))
+            <input id="error" type=hidden name="" value="{{ $error }}">
+            @endif
 
             <div class="input-wrapper">
                 <label for="description">description: </label>
@@ -23,11 +23,6 @@
             <div class="input-wrapper">
                 <label for="image">image: </label>
                 <input id="image" name="image" type="file">
-            </div>
-
-            <div class="input-wrapper">
-                <label for="status">status: </label>
-                <input id="status" name="status" type="text">
             </div>
             <ul id="part-list">
             </ul>

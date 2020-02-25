@@ -13,7 +13,7 @@
                             @if($value == null)
                                 <p id="{{ $key }}"> No image</p>
                             @else
-                                <p id="{{ $key }}"> {{ $value }}</p>
+                                <img src="{{ $image }}" alt="">
                             @endif
                         @else
                             <p id="{{ $key }}"> {{ $value }}</p>
@@ -23,6 +23,7 @@
                         </div>
                     </div>
                     <form class="{{ $key }}-invisible invisible" action="{{ route('update_product', ['id' => $product->id]) }}">
+
                         @if($key == "image")
                             <input name="{{ $key }}" type="file" placeholder="{{ $key }}">
                         @elseif($key == "amount" || $key == "price")
