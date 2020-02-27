@@ -16,10 +16,10 @@ class CreateDeviceUserTable extends Migration
         Schema::create('device_user', function (Blueprint $table) {
 
             $table->unsignedInteger('device_id');
-            $table->foreign('device_id')->references(['id'])->on('devices')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreign('device_id')->references(['id'])->on('devices')->onUpdate('cascade')->onDelete('cascade');
 
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references(['id'])->on('users')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreign('user_id')->references(['id'])->on('users')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }

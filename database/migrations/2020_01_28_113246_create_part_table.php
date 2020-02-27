@@ -14,7 +14,7 @@ class CreatePartTable extends Migration
     public function up()
     {
         Schema::create('parts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
 
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references(['id'])->on('products')->onUpdate('cascade')->onDelete('cascade');;
