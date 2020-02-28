@@ -5,7 +5,7 @@
     <div class="container">
         <div class="col-md-12">
             <div class="card-header">
-                <h1 class="name">Create an product</h1>
+                <h1 class="name">Create an device</h1>
             </div>
             <div class="card shadow">
                 <div class="card-body">

@@ -3322,7 +3322,6 @@ input[type=submit].btn-block,input[type=reset].btn-block,input[type=button].btn-
 }
 
 .dropdown-item {
-  display:block;
   width:100%;
   padding:.25rem 1.5rem;
   clear:both;
@@ -10257,7 +10256,7 @@ a:hover {
 
 .nav-item {
   margin:0;
-  padding: 0 1em 0 1em;
+  padding: 0 0 0 1em;
   position:relative
 }
 
@@ -10426,7 +10425,7 @@ a:hover {
 }
 .btn-production:active, .btn-production.active {
   border-radius: 6px;
-  box-shadow:0 0 0 .2rem rgba(0, 102, 255,0.25) !important;
+  box-shadow:0 0 0 .5rem rgba(0, 102, 255,0.25) !important;
 }
 
 /*card*/
@@ -10498,4 +10497,14 @@ table.table-expandable > tbody > tr div.table-expandable-arrow.up {
 
 .table > tbody >tr:hover {
   background-color:#f5f5f5
+}
+
+.custom-icon-menu-app {
+  display:inline-block;
+  float:left;
+  width:25px;
+  height:20px;
+  fill:currentColor;
+  margin:-2px auto -3px;
+  transition:transform 240ms cubic-bezier(.18,1.4,.4,1)
 }

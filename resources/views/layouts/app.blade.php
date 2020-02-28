@@ -49,30 +49,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('nav_create_device') }}" class="nav-link-hawkeye">
-                            <span class="custom-icon menu-icon" data-toggle="tooltip" data-placement="bottom" title="New Device">
-                                @svg('custom/plus')
-                            </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('nav_create_product') }}" class="nav-link-hawkeye">
-                            <span class="custom-icon menu-icon" data-toggle="tooltip" data-placement="bottom" title="New Product">
-                                @svg('custom/plus')
-                            </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{{ route('home') }}" class="nav-link-hawkeye">
                             <span class="custom-icon menu-icon" data-toggle="tooltip" data-placement="bottom" title="Orders">
                                 @svg('custom/shopping-card')
-                            </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('nav_create_order') }}" class="nav-link-hawkeye">
-                            <span class="custom-icon menu-icon" data-toggle="tooltip" data-placement="bottom" title="New Order">
-                                @svg('custom/plus')
                             </span>
                         </a>
                     </li>
@@ -99,19 +78,53 @@
                             </li>
                         @endif
                     @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div class="dropdown navbar-nav ml-auto">
+                                <a id="navbarDropdown" class="nav-link-hawkeye dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <span class="custom-icon" style="display: inline-block; width: 25px">
+                                        @svg('custom/plus')
+                                    </span>
+                                    {{ Auth::user()->name }}
+                                    <span class="caret"></span>
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
+                                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                    <li class="dropdown-item">
+                                        <a href="{{ route('nav_create_order') }}" class="nav-link-hawkeye" style="text-align: center">
+                                            <span class="custom-icon-menu-app">
+                                                @svg('custom/plus')
+                                            </span>
+                                            <span style="margin-left: 0.5rem">New order</span>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-divider"></li>
+                                    <li class="dropdown-item">
+                                        <a href="{{ route('nav_create_product') }}" class="nav-link-hawkeye">
+                                            <span class="custom-icon-menu-app">
+                                                @svg('custom/plus')
+                                            </span>
+                                            <span style="margin-left: 0.5rem">New Product</span>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-divider"></li>
+                                    <li class="dropdown-item">
+                                        <a href="{{ route('nav_create_device') }}" class="nav-link-hawkeye">
+                                            <span class="custom-icon-menu-app">
+                                                @svg('custom/plus')
+                                            </span>
+                                            <span style="margin-left: 0.5rem">New Device</span>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-divider"></li>
+                                    <li class="dropdown-item">
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </ul>
                             </div>
-                        </li>
                     @endguest
                 </ul>
             </div>
