@@ -14,14 +14,14 @@ class ProductsController extends Controller
     public function navCreate(Request $request)
     {
        $categories = Category::all();
-       return view('product pages/create_product', ['categories' => $categories]);
+       return view('product (inventory) pages/create_product', ['categories' => $categories]);
     }
 
     public function navUpdate(Request $request)
     {
         $product = Product::whereId($request->id)->first();
         $image = base64_encode(Storage::disk('s3')->get($product->image));
-        return view('product pages/update_product', ['product' => $product, 'image' => $image]);
+        return view('product (inventory) pages/update_product', ['product' => $product, 'image' => $image]);
     }
 
     public function update(Request $request)
@@ -37,7 +37,7 @@ class ProductsController extends Controller
         }
 
         $image = Storage::disk('s3')->url($product->image);
-        return view('product pages/update_product', ['product' => $product, 'image' => $image]);
+        return view('product (inventory) pages/update_product', ['product' => $product, 'image' => $image]);
     }
 
     public function create(Request $request)

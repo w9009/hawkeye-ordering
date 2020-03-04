@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-inventory')
 @section('content')
 @if(@isset($order))
 <div class="container-home">

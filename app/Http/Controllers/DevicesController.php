@@ -17,7 +17,7 @@ class DevicesController extends Controller
         $products = Product::all();
         $categories = Category::with('products')->get();
         $status = Status::all();
-        return view('device pages/create_device', ['products' => $products, 'categories' => $categories]);
+        return view('device (inventory) pages/create_device', ['products' => $products, 'categories' => $categories]);
     }
 
     public function create(Request $request)
@@ -29,7 +29,7 @@ class DevicesController extends Controller
         $params = $request->all();
 
         if (Device::whereName($params['name'])->exists()) {
-            return view('device pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 6]);
+            return view('device (inventory) pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 6]);
         }
 
         try {
@@ -48,7 +48,7 @@ class DevicesController extends Controller
           $device->save();
         } catch (\Exception $exception) {
             dd($exception);
-            return view('device pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 1]);
+            return view('device (inventory) pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 1]);
         }
 
         try {
@@ -65,12 +65,12 @@ class DevicesController extends Controller
           if(count($parts) == 0) {
               $device->delete();
               dd($parts, $params);
-              return view('device pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 2]);
+              return view('device (inventory) pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 2]);
           }
         } catch (\Exception $exception) {
           $device->delete();
           dd($parts, $exception, $params);
-          return view('device pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 2]);
+          return view('device (inventory) pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 2]);
         }
 
         $device->users()->attach(Auth::user()->id);
@@ -82,7 +82,7 @@ class DevicesController extends Controller
     {
         $device = Device::whereId($request->id)->with('users')->first();
         $device->image = base64_encode(Storage::disk('s3')->get($device->image));
-        return view('device pages/update_device', ['device' => $device]);
+        return view('device (inventory) pages/update_device', ['device' => $device]);
     }
 
     public function update(Request $request)
@@ -98,6 +98,6 @@ class DevicesController extends Controller
       }
 
       $device = Device::whereId($device->id)->with('users')->first();
-      return view('device pages/update_device', ['device' => $device]);
+      return view('device (inventory) pages/update_device', ['device' => $device]);
     }
 }

@@ -9,7 +9,7 @@ use App\Order;
 
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class OrdersController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -33,7 +33,7 @@ class HomeController extends Controller
         // get all devices and products for authenticated use
         $orders = Order::with('devices', 'status')->get();
 
-        return view('home', ['orders' => $orders]);
+        return view('orders', ['orders' => $orders]);
     }
 
     public function partsDevices()

@@ -51,4 +51,4 @@ Route::group(['prefix' => 'management'], function() {
 
 Auth::routes();
 
-Route::get('/management', 'HomeController@index')->name('home');
+Route::get('/management', 'OrdersController@index')->name('orders');

@@ -16,7 +16,7 @@ class OrderController extends Controller
     $order  = Order::whereId($request->id)->with('devices.products', 'users')->first();
     $users  = User::all();
     $status = Status::all();
-    return view('order pages/inspect_order', ['order' => $order, 'users' =>$users, 'status' => $status]);
+    return view('order (inventory) pages/inspect_order', ['order' => $order, 'users' =>$users, 'status' => $status]);
   }
 
   public function assign(Request $request)
@@ -32,14 +32,14 @@ class OrderController extends Controller
     $order->status_id = $params['status_id'];
     $order->update();
 
-    return view('order pages/inspect_order', ['order' => $order, 'users' =>$users, 'status' => $status]);
+    return view('order (inventory) pages/inspect_order', ['order' => $order, 'users' =>$users, 'status' => $status]);
   }
 
   public function navCreate()
   {
     $devices = Device::all();
     $status  = Status::all();
-    return view('order pages/create_order', ['devices' => $devices, 'status' => $status]);
+    return view('order (inventory) pages/create_order', ['devices' => $devices, 'status' => $status]);
   }
 
   public function create(Request $request) {
@@ -51,7 +51,7 @@ class OrderController extends Controller
     $parts           = [];
 
     if (Order::whereTitle($params['title'])->exists()) {
-        return view('order pages/create_order', ['devices' => $devices, 'status' => $status, 'error' => 6]);
+        return view('order (inventory) pages/create_order', ['devices' => $devices, 'status' => $status, 'error' => 6]);
     }
 
     try {
@@ -63,7 +63,7 @@ class OrderController extends Controller
           ]);
       }
     } catch (\ErrorException $exception) {
-      return view('order pages/create_order', ['devices' => $devices, 'status' => $status, 'error' => 3]);
+      return view('order (inventory) pages/create_order', ['devices' => $devices, 'status' => $status, 'error' => 3]);
     }
 
     try {
@@ -75,7 +75,7 @@ class OrderController extends Controller
       $order->save();
     } catch (\Exception $exception) {
         dd($exception, $status_request);
-        return view('order pages/create_order', ['devices' => $devices, 'status' => $status, 'error' => 1]);
+        return view('order (inventory) pages/create_order', ['devices' => $devices, 'status' => $status, 'error' => 1]);
     }
 
     try {
@@ -92,7 +92,7 @@ class OrderController extends Controller
       }
     } catch (\Exception $exception) {
         dd($exception, $params);
-        return view('order pages/create_order', ['devices' => $devices, 'status' => $status, 'error' => 2]);
+        return view('order (inventory) pages/create_order', ['devices' => $devices, 'status' => $status, 'error' => 2]);
     }
 
     try {
